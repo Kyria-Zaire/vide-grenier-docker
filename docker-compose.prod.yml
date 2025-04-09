@@ -1,0 +1,34 @@
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: docker/prod/Dockerfile
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    networks:
+      - cubes5_prod_network
+
+  db:
+    image: mysql:8.0
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql_prod_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-strong_root_password}
+      MYSQL_DATABASE: cubes5_db
+      MYSQL_USER: cubes5_user
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-strong_password}
+    networks:
+      - cubes5_prod_network
+
+volumes:
+  mysql_prod_data:
+    driver: local
+
+networks:
+  cubes5_prod_network:
+    driver: bridge
