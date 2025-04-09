@@ -7,12 +7,12 @@ RUN docker-php-ext-install pdo pdo_mysql
 RUN a2enmod rewrite
 
 # Configuration de l'environnement de production
-ENV PHP_ERROR_REPORTING=E_ALL & ~E_DEPRECATED & ~E_STRICT
-ENV PHP_DISPLAY_ERRORS=Off
-ENV PHP_LOG_ERRORS=On
+ENV PHP_ERROR_REPORTING="E_ALL & ~E_DEPRECATED & ~E_STRICT"
+ENV PHP_DISPLAY_ERRORS="Off"
+ENV PHP_LOG_ERRORS="On"
 
 # Copie des fichiers de l'application
-COPY ../app/ /var/www/html/
+COPY app/ /var/www/html/
 
 # Configuration des permissions
 RUN chown -R www-data:www-data /var/www/html \
