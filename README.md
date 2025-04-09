@@ -32,7 +32,7 @@ docker-compose up -d
 
 3. Accéder à l'application :
 - Développement : http://localhost:8080
-- Production : http://localhost
+- Production : http://localhost:8081
 
 ## Structure du Projet
 
@@ -62,7 +62,7 @@ docker-compose logs -f
 
 ## Production
 
-L'environnement de production utilise le port 80 et inclut des optimisations de sécurité.
+L'environnement de production utilise le port 8081 et inclut des optimisations de sécurité.
 
 ```bash
 # Lancer l'environnement de production
