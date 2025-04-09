@@ -31,8 +31,8 @@ docker-compose up -d
 ```
 
 3. Accéder à l'application :
-- Développement : http://localhost:8080
-- Production : http://localhost:8081
+- Développement : http://localhost:8082
+- Production : http://localhost:8083
 
 ## Structure du Projet
 
