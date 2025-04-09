@@ -8,6 +8,12 @@ services:
       - "80:80"
     depends_on:
       - db
+    environment:
+      - PHP_ERROR_REPORTING="E_ALL & ~E_DEPRECATED & ~E_STRICT"
+      - PHP_DISPLAY_ERRORS=Off
+      - PHP_LOG_ERRORS=On
+      - MYSQL_USER=${MYSQL_USER:-cubes5_user}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-cubes5_password}
     networks:
       - cubes5_prod_network
 
@@ -20,8 +26,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-strong_root_password}
       MYSQL_DATABASE: cubes5_db
-      MYSQL_USER: cubes5_user
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-strong_password}
+      MYSQL_USER: ${MYSQL_USER:-cubes5_user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-cubes5_password}
     networks:
       - cubes5_prod_network
 

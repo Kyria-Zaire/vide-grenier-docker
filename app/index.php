@@ -1,8 +1,8 @@
 <?php
 try {
     $dsn = "mysql:host=db;dbname=cubes5_db;charset=utf8mb4";
-    $username = "cubes5_user";
-    $password = "cubes5_password";
+    $username = getenv('MYSQL_USER') ?: 'cubes5_user';
+    $password = getenv('MYSQL_PASSWORD') ?: 'cubes5_password';
 
     $pdo = new PDO($dsn, $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
