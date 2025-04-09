@@ -7,6 +7,14 @@ try {
     $pdo = new PDO($dsn, $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // Créer la table si elle n'existe pas
+    $pdo->exec("CREATE TABLE IF NOT EXISTS items (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        description TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )");
+
     echo '<!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +29,6 @@ try {
 <body>';
 
     echo "<h1>Connexion à la base de données réussie!</h1>";
-    
-    // Modifier la table pour ajouter la colonne description si elle n'existe pas
-    $pdo->exec("ALTER TABLE items ADD COLUMN IF NOT EXISTS description TEXT");
 
     // Insérer des données de test si la table est vide
     $count = $pdo->query("SELECT COUNT(*) FROM items")->fetchColumn();
